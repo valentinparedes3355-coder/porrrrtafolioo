@@ -151,6 +151,26 @@
       </div>
     </div>
 
+    <section class="projects">
+      <div class="container">
+        <h2>Proyectos destacados</h2>
+        <div class="projects-grid">
+          <article class="project-card" data-url="assets/mockups/project1/index.html">
+            <div class="thumb"><img src="assets/images/ceramicaCompu.png" alt="Tienda de Vajilla de Cerámica"></div>
+            <h3>Tienda de Vajilla de Cerámica</h3>
+            <p class="muted">2023 · Argentina · E-commerce, Branding, UX/UI</p>
+            <button class="btn view-site">Ver proyecto</button>
+          </article>
+          <article class="project-card" data-url="assets/mockups/project2/index.html">
+            <div class="thumb"><img src="assets/images/mocksite2_thumb.png" alt="Tienda Local"></div>
+            <h3>Tienda Local — E-commerce</h3>
+            <p class="muted">2024 · Local · E-commerce, UX</p>
+            <button class="btn view-site">Ver proyecto</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="clients">
       <div class="container">
         <h2>Clientes que confían</h2>
@@ -193,6 +213,11 @@
     </section>
   </main>
   
+  <div id="previewOverlay" class="overlay hidden" aria-hidden="true">
+    <button id="closePreview" class="close" aria-label="Cerrar">✕</button>
+    <div class="overlay-inner"><iframe id="previewFrame" src="about:blank" frameborder="0"></iframe></div>
+  </div>
+
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-grid">
