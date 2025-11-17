@@ -1,25 +1,127 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Landing para Emprendimiento — Mockup</title>
-  <link rel="stylesheet" href="../../css/style.css">
+	<meta charset="utf-8">
+	<title>Control de Stock para Tienda de Ropa</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style>
+		body {
+			font-family: Arial, Inter, sans-serif;
+			background: #fff;
+			color: #111;
+			margin: 0;
+			padding: 0;
+		}
+		.mock-container {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 2.5rem 1rem 3rem 1rem;
+		}
+		.mock-header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 2.2rem;
+		}
+		.mock-img-row {
+			display: flex;
+			gap: 2rem;
+			justify-content: center;
+			margin-bottom: 2.2rem;
+			flex-wrap: wrap;
+		}
+		.mock-img-row img {
+			max-width: 350px;
+			width: 100%;
+			border-radius: 14px;
+			box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+			background: #eee;
+		}
+		h1 {
+			font-size: 2.5rem;
+			font-weight: 900;
+			color: #111;
+			margin-bottom: .2em;
+			text-align: center;
+		}
+		h2 {
+			font-size: 1.3rem;
+			font-weight: 700;
+			color: #FFD300;
+			margin-bottom: 1.2em;
+			text-align: center;
+			letter-spacing: 0.5px;
+		}
+		.mock-block {
+			margin-bottom: 1.3em;
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.mock-block h3 {
+			font-size: 1.08rem;
+			color: #FFD300;
+			margin-bottom: .2em;
+			margin-top: 0;
+			font-weight: 800;
+			letter-spacing: 0.2px;
+		}
+		.mock-block p, .mock-block ul {
+			font-size: 1.08rem;
+			line-height: 1.6;
+			color: #222;
+			margin: 0 0 .5em 0;
+		}
+		.mock-block ul {
+			margin-left: 1.2em;
+		}
+		@media (max-width: 900px) {
+			.mock-img-row {
+				flex-direction: column;
+				gap: 1.2rem;
+			}
+			.mock-img-row img {
+				max-width: 98vw;
+			}
+		}
+	</style>
 </head>
-<body class="dark">
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="../../index.html">Code Express</a>
-    </div>
-  </header>
-  <main class="container" style="padding-top:6rem">
-    <h1 class="page-title">Landing para Emprendimiento</h1>
-    <p class="lead">Mockup de landing pensado para captación y conversión en emprendimientos.</p>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem">
-      <img src="../../images/founder2.jpg" alt="Mockup 1" style="max-width:100%;height:auto;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6)" />
-    </div>
-    <p style="margin-top:1rem;color:var(--muted)">Este es un mockup de ejemplo. Usá el botón de volver para regresar al portafolio.</p>
-    <p><a href="../../portfolio.html" class="btn ghost">Volver al portafolio</a></p>
-  </main>
+<body>
+	<div class="mock-container">
+				<div class="mock-header">
+					<h1>Control de Stock para Tienda de Ropa</h1>
+					<h2>Gestión de inventario, tallas, colores y alertas de reposición</h2>
+				</div>
+				<div class="mock-block">
+					<h3>Primer contacto</h3>
+					<p>Una tienda de ropa boutique nos contactó porque tenía problemas constantes de desorganización en el inventario, sobresto en ciertos productos y falta de stock en otros.</p>
+				</div>
+				<div class="mock-block">
+					<h3>Problemática</h3>
+					<p>Sin un sistema centralizado de stock, la tienda perdía ventas por no saber qué prendas tenía disponibles, en qué tallas y colores. Además, los reordenes se hacían de forma desorganizada.</p>
+				</div>
+				<div class="mock-block">
+					<h3>Solución</h3>
+					<p>Desarrollamos un sistema integral de gestión de inventario que permite registrar cada prenda con sus variantes (tallas, colores), controlar movimientos de entrada/salida, alertas automáticas cuando el stock es bajo y reportes de ventas por producto.</p>
+					<ul>
+						<li>Catálogo de prendas con variantes</li>
+						<li>Control de inventario en tiempo real</li>
+						<li>Alertas de stock bajo</li>
+						<li>Reportes de ventas y rotación de productos</li>
+					</ul>
+				</div>
+				<div class="mock-block">
+					<h3>Resultado</h3>
+					<p>Redujo pérdidas por falta de control en un 75%, aumentó la eficiencia en reordenes en un 60% y mejoró la disponibilidad de productos para los clientes.</p>
+				</div>
+				<section class="mock-images-section">
+					<h2 style="text-align:center;color:#FFD300;font-size:1.15rem;margin-bottom:1.2rem;">Imágenes del proyecto</h2>
+					<div class="mock-img-row">
+					<img src="../../images/ceramicaCompu.png" alt="Vista web control de stock">
+					<img src="../../images/ceramicaCelu.png" alt="Vista móvil control de stock">
+					</div>
+				</section>
+
+	</div>
 </body>
 </html>
