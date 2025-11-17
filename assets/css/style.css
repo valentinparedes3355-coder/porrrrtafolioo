@@ -234,8 +234,8 @@ main{position:relative;z-index:2}
 
 /* Technologies */
 .tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1rem}
-.tech-card{padding:1rem;text-align:center;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
-.tech-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.6)}
+.tech-card{padding:1rem;text-align:center;border-radius:12px;background:linear-gradient(135deg, rgba(255,211,0,0.15) 0%, rgba(255,211,0,0.08) 100%);cursor:pointer;border:2px solid #FFD300;color:#FFD300;font-weight:700;font-size:1.1rem;transition:all .3s ease}
+.tech-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(255,211,0,0.3);background:linear-gradient(135deg, rgba(255,211,0,0.25) 0%, rgba(255,211,0,0.15) 100%);color:#fff}
 
 /* Modal content */
 .modal-card{max-width:720px;width:100%;height:auto;padding:1.6rem;position:relative;border-radius:12px}
@@ -402,7 +402,13 @@ main{position:relative;z-index:2}
 .projects-preview > .projects-grid, .projects > .projects-grid, .pricing > .pricing-grid{margin-top:1rem}
 
 /* make the section backgrounds span full width visually while keeping .container centered */
-.projects-preview, .projects, .pricing, .clients, .quote, .technologies, .methodology, .faq, .cta-strip{padding:2.2rem 0}
+.projects-preview, .projects, .pricing, .clients, .quote, .technologies, .methodology, .faq, .cta-strip{padding:1.2rem 0}
 
 /* ensure text contrast */
 .projects-preview h2, .projects h2, .pricing h2, .clients h2, .quote h2, .technologies h2, .methodology h2, .faq h2{color:#fff}
+
+/* Agregar espacio arriba de títulos en páginas que no sean index */
+.projects h2, .pricing h2, .clients h2, .quote h2, .technologies h2, .methodology h2, .faq h2 {
+	margin-top: 2rem;
+	margin-bottom: 0.8rem;
+}

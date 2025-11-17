@@ -25,60 +25,207 @@
 
     <section id="servicios" class="servicios-section">
       <div class="servicios-grid">
-        <div class="servicio-card">
-          <div class="servicio-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="Desarrollo Web">
-          </div>
-          <div class="servicio-info">
-            <h3>Desarrollo Web</h3>
-            <p>Diseñamos y desarrollamos sitios web modernos, rápidos y completamente adaptables a cualquier dispositivo.</p>
-          </div>
-        </div>
-
-        <div class="servicio-card">
-          <div class="servicio-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/1829/1829588.png" alt="Sistemas a Medida">
-          </div>
-          <div class="servicio-info">
-            <h3>Sistemas a Medida</h3>
-            <p>Construimos software personalizado, optimizado para los procesos y necesidades específicas de tu empresa.</p>
-          </div>
-        </div>
-
-        <div class="servicio-card">
-          <div class="servicio-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Automatización de Procesos">
-          </div>
-          <div class="servicio-info">
-            <h3>Automatización de Procesos</h3>
-            <p>Digitalizamos y automatizamos tareas internas para reducir tiempos y aumentar la eficiencia del equipo.</p>
+        <div class="servicio-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="servicio-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/4436/4436481.png" alt="Tienda Online">
+              </div>
+              <h3>Tienda Online</h3>
+            </div>
+            <div class="flip-card-back">
+              <h3>Tienda Online</h3>
+              <p><strong>Para ti:</strong> Vende tus productos 24/7 sin depender de redes sociales.</p>
+              <p><strong>Beneficios:</strong></p>
+              <ul style="font-size: 0.9rem; margin: 0.5rem 0; padding-left: 1rem;">
+                <li>Carrito de compras seguro</li>
+                <li>Pagos integrados</li>
+                <li>Gestión de stock</li>
+                <li>Autonomía total</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="servicio-card">
-          <div class="servicio-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/2332/2332289.png" alt="Consultoría Tecnológica">
+        <div class="servicio-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="servicio-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/3209/3209306.png" alt="Sistema de Reservas">
+              </div>
+              <h3>Sistema de Reservas</h3>
+            </div>
+            <div class="flip-card-back">
+              <h3>Sistema de Reservas</h3>
+              <p><strong>Para ti:</strong> Agenda tus turnos o mesas sin gestión manual.</p>
+              <p><strong>Beneficios:</strong></p>
+              <ul style="font-size: 0.9rem; margin: 0.5rem 0; padding-left: 1rem;">
+                <li>Confirmaciones automáticas</li>
+                <li>Recordatorios por WhatsApp</li>
+                <li>Disponibilidad 24/7</li>
+                <li>Reduce cancelaciones</li>
+              </ul>
+            </div>
           </div>
-          <div class="servicio-info">
-            <h3>Consultoría Tecnológica</h3>
-            <p>Te asesoramos en infraestructura, seguridad y estrategia digital para potenciar tu negocio.</p>
+        </div>
+
+        <div class="servicio-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="servicio-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/2913/2913091.png" alt="Control de Stock">
+              </div>
+              <h3>Control de Stock</h3>
+            </div>
+            <div class="flip-card-back">
+              <h3>Control de Stock</h3>
+              <p><strong>Para ti:</strong> Controla tu inventario en tiempo real.</p>
+              <p><strong>Beneficios:</strong></p>
+              <ul style="font-size: 0.9rem; margin: 0.5rem 0; padding-left: 1rem;">
+                <li>Alertas de stock bajo</li>
+                <li>Gestión de variantes</li>
+                <li>Reportes de ventas</li>
+                <li>Sin pérdidas por desorden</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="servicio-card flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="servicio-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/8099/8099374.png" alt="Asesoramiento Digital">
+              </div>
+              <h3>Asesoramiento Digital</h3>
+            </div>
+            <div class="flip-card-back">
+              <h3>Asesoramiento Digital</h3>
+              <p><strong>Para ti:</strong> Estrategia personalizada para tu negocio digital.</p>
+              <p><strong>Beneficios:</strong></p>
+              <ul style="font-size: 0.9rem; margin: 0.5rem 0; padding-left: 1rem;">
+                <li>Análisis de necesidades</li>
+                <li>Roadmap personalizado</li>
+                <li>Soporte continuo</li>
+                <li>Crecimiento sostenible</li>
+              </ul>
+            </div>
           </div>
         </div>
 
       </div>
     </section>
 
+    <style>
+      .flip-card {
+        background-color: transparent;
+        width: 100%;
+        height: 300px;
+        perspective: 1000px;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 1.2s;
+        transform-style: preserve-3d;
+      }
+
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 10px;
+      }
+
+      .flip-card-front {
+        background: linear-gradient(135deg, #4a4a4a 0%, #3d3d3d 100%);
+        color: white;
+      }
+
+      .flip-card-back {
+        background: linear-gradient(135deg, #FFD300 0%, #FFC300 100%);
+        color: #333;
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front .servicio-icon {
+        margin-bottom: 1rem;
+      }
+
+      .flip-card-front .servicio-icon img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .flip-card-front h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      .flip-card-back h3 {
+        margin-top: 0;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .flip-card-back p {
+        font-size: 0.95rem;
+        margin: 0.5rem 0;
+        line-height: 1.4;
+      }
+
+      .flip-card-back ul {
+        text-align: left;
+      }
+    </style>
+
     
     <section class="methodology">
       <div class="container">
         <h2>Metodología de trabajo</h2>
-        <p>Trabajamos por ciclos cortos: discovery, priorización, desarrollo iterativo y medición. En cada etapa entregamos artefactos claros (brief, prototipos, backlog, entregables) y hacemos checkpoints con el cliente.</p>
-        <ol class="method-steps">
-          <li><strong>Diagnóstico</strong> — 1 semana: entendemos tu negocio y prioridades.</li>
-          <li><strong>Prototipado</strong> — 1-2 semanas: validamos hipótesis con usuarios.</li>
-          <li><strong>Desarrollo</strong> — entregas iterativas y feedback.</li>
-          <li><strong>Operación</strong> — acompañamiento y medición de resultados.</li>
-        </ol>
+        <p class="lead">Trabajamos de forma cercana, iterativa y transparente. Nuestro proceso está pensado para startups y emprendimientos que necesitan resultados rápidos sin perder calidad.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;">
+          <div class="card" style="padding: 1.5rem; border-left: 4px solid #FFD300;">
+            <h3 style="margin-top: 0; color: #FFD300;">🔍 Discovery & Estrategia</h3>
+            <p style="font-size: 0.95rem; color: #666;">Talleres colaborativos para entender tu negocio, usuarios y objetivos. Definimos scope, timeline, KPIs y entregamos propuesta clara.</p>
+            <small style="color: #999;">⏱️ 1 semana</small>
+          </div>
+          <div class="card" style="padding: 1.5rem; border-left: 4px solid #FFD300;">
+            <h3 style="margin-top: 0; color: #FFD300;">🎨 Diseño & Prototipado</h3>
+            <p style="font-size: 0.95rem; color: #666;">Wireframes y prototipos iterativos. Validamos con usuarios reales y hacemos ajustes antes de desarrollar.</p>
+            <small style="color: #999;">⏱️ 1-2 semanas</small>
+          </div>
+          <div class="card" style="padding: 1.5rem; border-left: 4px solid #FFD300;">
+            <h3 style="margin-top: 0; color: #FFD300;">⚙️ Desarrollo Iterativo</h3>
+            <p style="font-size: 0.95rem; color: #666;">Sprints de 1-2 semanas con entregas funcionales. Seguimiento diario y reuniones bi-semanales.</p>
+            <small style="color: #999;">⏱️ Variable según proyecto</small>
+          </div>
+          <div class="card" style="padding: 1.5rem; border-left: 4px solid #FFD300;">
+            <h3 style="margin-top: 0; color: #FFD300;">🚀 Lanzamiento & Optimización</h3>
+            <p style="font-size: 0.95rem; color: #666;">Testing exhaustivo, capacitación y lanzamiento. Primeros 30 días de soporte intensivo incluido.</p>
+            <small style="color: #999;">⏱️ 1-2 semanas</small>
+          </div>
+          <div class="card" style="padding: 1.5rem; border-left: 4px solid #FFD300;">
+            <h3 style="margin-top: 0; color: #FFD300;">📈 Soporte & Crecimiento</h3>
+            <p style="font-size: 0.95rem; color: #666;">Planes mensuales de mantenimiento, asesorías estratégicas y nuevas features. Siempre disponibles para crecer juntos.</p>
+            <small style="color: #999;">⏱️ Continuo</small>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -129,13 +276,18 @@
     <section class="technologies">
       <div class="container">
         <h2>Tecnologías que usamos</h2>
-        <p class="lead">Hacé clic en cada tecnología para saber más.</p>
+        <p class="lead">Stack moderno, seguro y escalable pensado para emprendedores que quieren crecer.</p>
         <div class="tech-grid">
           <button class="tech-card card" data-tech="React" data-desc="Librería para construir interfaces reactivas y mantener componentes reutilizables.">React</button>
           <button class="tech-card card" data-tech="Node.js" data-desc="Ecosistema backend para APIs rápidas y escalables.">Node.js</button>
           <button class="tech-card card" data-tech="Next.js" data-desc="Framework para aplicaciones React con SSR y optimización de performance.">Next.js</button>
-          <button class="tech-card card" data-tech="Figma" data-desc="Diseño y prototipado colaborativo para entregar diseños listos para desarrollo.">Figma</button>
+          <button class="tech-card card" data-tech="TypeScript" data-desc="JavaScript tipado para código más seguro y mantenible.">TypeScript</button>
+          <button class="tech-card card" data-tech="PostgreSQL" data-desc="Base de datos robusta y confiable para datos complejos.">PostgreSQL</button>
+          <button class="tech-card card" data-tech="MongoDB" data-desc="Base de datos NoSQL flexible para aplicaciones ágiles.">MongoDB</button>
           <button class="tech-card card" data-tech="Stripe" data-desc="Pagos y facturación integrada para comercios y suscripciones.">Stripe</button>
+          <button class="tech-card card" data-tech="Figma" data-desc="Diseño y prototipado colaborativo para entregar diseños listos para desarrollo.">Figma</button>
+          <button class="tech-card card" data-tech="Docker" data-desc="Containerización para deployments consistentes y escalables.">Docker</button>
+          <button class="tech-card card" data-tech="AWS" data-desc="Cloud computing con servicios escalables: servidores, almacenamiento y CDN.">AWS</button>
         </div>
       </div>
     </section>
