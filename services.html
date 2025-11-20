@@ -357,16 +357,16 @@
         <h2>Proyectos destacados</h2>
         <div class="projects-grid">
           <article class="project-card" data-url="assets/mockups/project1/index.html">
-            <div class="thumb"><img src="assets/images/ceramicaCompu.png" alt="Sistema de Agenda para Barbería"></div>
+            <div class="thumb"><img src="assets/images/barberiacompu.png" alt="Sistema de Agenda para Barbería"></div>
             <h3>Sistema de Agenda para Barbería</h3>
             <p class="muted">2024 · Turnos Online · Agenda, WhatsApp, Recordatorios</p>
             <button class="btn view-site">Ver proyecto</button>
           </article>
           <article class="project-card" data-url="assets/mockups/project2/index.html">
-            <div class="thumb"><img src="assets/images/mocksite2_thumb.png" alt="Sistema de Agenda para Manicurista"></div>
+            <div class="thumb"><img src="assets/images/uñascompu.png" alt="Sistema de Agenda para Manicurista"></div>
             <h3>Sistema de Agenda para Manicurista</h3>
             <p class="muted">2024 · Reservas Online · Galería, Diseños, Portfolios</p>
-            <button class="btn view-site">Ver proyecto</button>
+            <button class="btn view-site" style="margin-top:.8rem">Ver proyecto</button>
           </article>
         </div>
       </div>
@@ -379,7 +379,16 @@
   
   <div id="previewOverlay" class="overlay hidden" aria-hidden="true">
     <button id="closePreview" class="close" aria-label="Cerrar">✕</button>
-    <div class="overlay-inner"><iframe id="previewFrame" src="about:blank" frameborder="0"></iframe></div>
+    <div class="overlay-inner modal-card-blanco">
+      <div class="modal-content" id="previewContent" style="padding:1.6rem;">
+        <h3 id="previewTitle" class="modal-proyecto-titulo">Proyecto</h3>
+        <p id="previewDesc" class="modal-proyecto-sub">Descripción no disponible.</p>
+        <div id="previewMedia" class="modal-proyecto-fotos-row" style="justify-content:center;margin-top:1rem;"></div>
+        <p style="text-align:center;margin-top:1rem;">
+          <a id="previewOpen" class="btn primary" href="#" target="_blank">Abrir en nueva pestaña</a>
+        </p>
+      </div>
+    </div>
   </div>
 
   <footer class="site-footer">

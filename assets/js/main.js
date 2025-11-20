@@ -2,33 +2,87 @@ document.addEventListener('DOMContentLoaded', ()=>{
   if(window.gsap){
     try{gsap.registerPlugin(ScrollTrigger);gsap.from('.hero-title',{y:40,opacity:0,duration:1.1,ease:'power3.out'});gsap.from('.hero-sub',{y:20,opacity:0,duration:0.9,delay:0.2});gsap.from('.projects-grid article',{y:30,opacity:0,duration:0.8,stagger:0.12,scrollTrigger:{trigger:'.projects-grid',start:'top 80%'}});gsap.from('.stats .num',{y:10,opacity:0,duration:0.8,stagger:0.15,scrollTrigger:{trigger:'.stats',start:'top 90%'}});}catch(e){console.warn(e)}
   }
-  document.querySelectorAll('.project-card .view-site').forEach(btn=>{
-    btn.addEventListener('click', ev=>{
-      const card = ev.target.closest('.project-card');
-      const url = card.dataset.url;
-      // Si es un modal interno (hash)
-      if(url && url.startsWith('#modal-proyecto-ceramica')){
-        const modal = document.getElementById('modal-proyecto-ceramica');
-        if(modal){
-          modal.classList.remove('hidden');
-          modal.setAttribute('aria-hidden','false');
-        }
-        ev.preventDefault();
-        return;
-      }
-      // Comportamiento original para previews embebidas
-      const overlay = document.getElementById('previewOverlay');
-      const iframe = document.getElementById('previewFrame');
-      if(!overlay||!iframe) return;
-      if(url.match(/\.(png|jpg|jpeg)$/i)){
-        const html = `<html><body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center"><img src="${url}" style="max-width:100%;max-height:100%"/></body></html>`;
-        iframe.srcdoc = html;
+  // Project preview handler: open native modal (no iframe)
+  const attachPreview = (card) => {
+    const overlay = document.getElementById('previewOverlay');
+    const titleEl = document.getElementById('previewTitle');
+    const descEl = document.getElementById('previewDesc');
+    const mediaEl = document.getElementById('previewMedia');
+    const openBtn = document.getElementById('previewOpen');
+    const url = card.dataset.url || card.getAttribute('data-url') || '';
+    if(!overlay || !titleEl || !descEl || !mediaEl || !openBtn){ console.warn('preview modal elements missing'); return; }
+
+    // Fill title / desc from card or defaults
+    const cardTitle = (card.querySelector('h3') && card.querySelector('h3').textContent.trim()) || 'Proyecto';
+    const cardDesc = (card.querySelector('.muted') && card.querySelector('.muted').textContent.trim()) || 'Descripción no disponible.';
+    titleEl.textContent = cardTitle;
+    descEl.textContent = cardDesc;
+
+    // Clear previous media
+    mediaEl.innerHTML = '';
+
+    if(url){
+      openBtn.href = url;
+      openBtn.style.display = 'inline-block';
+      if(/\.(png|jpe?g|gif|webp|svg)$/i.test(url)){
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = cardTitle;
+        img.className = 'modal-proyecto-img';
+        mediaEl.appendChild(img);
       } else {
-        iframe.src = url;
+        // Not an image: try to show the card thumbnail if present
+        const thumbImg = card.querySelector('.thumb img');
+        if(thumbImg){
+          const img = thumbImg.cloneNode(true);
+          img.className = 'modal-proyecto-img';
+          mediaEl.appendChild(img);
+        } else {
+          // No thumbnail available: show a placeholder
+          const placeholder = document.createElement('div');
+          placeholder.className = 'modal-proyecto-img';
+          placeholder.style.display = 'flex';
+          placeholder.style.alignItems = 'center';
+          placeholder.style.justifyContent = 'center';
+          placeholder.style.background = '#f3f3f3';
+          placeholder.style.color = '#111';
+          placeholder.textContent = 'Vista previa no disponible';
+          mediaEl.appendChild(placeholder);
+        }
       }
-      overlay.classList.remove('hidden');
-      overlay.setAttribute('aria-hidden','false');
-    });
+    } else {
+      openBtn.style.display = 'none';
+      const placeholder = document.createElement('div');
+      placeholder.className = 'modal-proyecto-img';
+      placeholder.style.display = 'flex';
+      placeholder.style.alignItems = 'center';
+      placeholder.style.justifyContent = 'center';
+      placeholder.style.background = '#f3f3f3';
+      placeholder.style.color = '#111';
+      placeholder.textContent = 'No hay vista previa disponible.';
+      mediaEl.appendChild(placeholder);
+    }
+
+    overlay.classList.remove('hidden'); overlay.setAttribute('aria-hidden','false');
+  };
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    const btn = card.querySelector('.view-site');
+    if(btn){
+      console.log('DEBUG: binding view-site button for card', card, 'data-url=', card.dataset.url);
+      btn.addEventListener('click', (ev) => { console.log('DEBUG: view-site clicked', card); ev.preventDefault(); attachPreview(card); });
+    } else {
+      // fallback: click on card opens preview
+      // ignore clicks that come from interactive elements inside the card
+      console.log('DEBUG: binding click on card fallback', card, 'data-url=', card.dataset.url);
+      card.addEventListener('click', (ev) => {
+        console.log('DEBUG: card clicked', ev.target);
+        if(ev.target.closest('a') || ev.target.closest('button') || ev.target.closest('input') || ev.target.closest('textarea')) return;
+        ev.preventDefault();
+        attachPreview(card);
+      });
+    }
+    }
   });
 
   // Cerrar modal de proyecto cerámica
@@ -41,7 +95,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }
     });
   });
-  const close = document.getElementById('closePreview'); if(close){ close.addEventListener('click', ()=>{ const overlay = document.getElementById('previewOverlay'); const iframe = document.getElementById('previewFrame'); iframe.src = 'about:blank'; iframe.srcdoc = ''; overlay.classList.add('hidden'); overlay.setAttribute('aria-hidden','true'); }); }
+  const close = document.getElementById('closePreview'); if(close){ close.addEventListener('click', ()=>{ const overlay = document.getElementById('previewOverlay'); const titleEl = document.getElementById('previewTitle'); const descEl = document.getElementById('previewDesc'); const mediaEl = document.getElementById('previewMedia'); const openBtn = document.getElementById('previewOpen'); if(mediaEl) mediaEl.innerHTML = ''; if(titleEl) titleEl.textContent = ''; if(descEl) descEl.textContent = ''; if(openBtn) openBtn.href = '#'; overlay.classList.add('hidden'); overlay.setAttribute('aria-hidden','true'); }); }
   const form = document.getElementById('contactForm');
   if(form){
     const action = (form.getAttribute('action')||'').trim();
@@ -152,6 +206,46 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }); });
 
   if(form){ const action = (form.getAttribute('action')||'').trim(); if(!action || action==='#'){ form.addEventListener('submit', (ev)=>{ ev.preventDefault(); const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Enviando...'; setTimeout(()=>{ document.getElementById('formSuccess').classList.remove('hidden'); form.reset(); if(packageInput) packageInput.value = ''; btn.disabled = false; btn.textContent = 'Solicitar cotización'; },900); }); } }
+
+  // Ensure project cards have readable title/description and re-enable interactive controls
+  document.querySelectorAll('.project-card').forEach(card => {
+    try{
+      // Title
+      const existingTitle = card.querySelector('h3');
+      if(!existingTitle || !existingTitle.textContent.trim()){
+        const h = existingTitle || document.createElement('h3');
+        h.textContent = (existingTitle && existingTitle.textContent.trim()) || 'Proyecto';
+        if(!existingTitle) card.insertBefore(h, card.firstChild);
+      }
+      // Description (muted)
+      const existingDesc = card.querySelector('.muted');
+      if(!existingDesc || !existingDesc.textContent.trim()){
+        const p = existingDesc || document.createElement('p');
+        p.className = 'muted';
+        p.textContent = (existingDesc && existingDesc.textContent.trim()) || 'Descripción no disponible.';
+        if(!existingDesc){
+          const titleEl = card.querySelector('h3');
+          if(titleEl) titleEl.insertAdjacentElement('afterend', p);
+          else card.appendChild(p);
+        } else {
+          existingDesc.textContent = p.textContent;
+        }
+      }
+      // Re-enable interactive elements inside the card
+      card.querySelectorAll('button, a, input, textarea').forEach(el => {
+        if(el.disabled) el.disabled = false;
+        // If anchor has no meaningful href, try to set a safe one
+        if(el.tagName && el.tagName.toLowerCase() === 'a'){
+          const href = el.getAttribute('href') || '';
+          if(!href || href === '#'){
+            if(card.dataset.url){ el.setAttribute('href', card.dataset.url); el.setAttribute('target', '_blank'); }
+            else if(el.dataset.package){ el.setAttribute('href', '#quoteForm'); }
+          }
+        }
+      });
+    }catch(e){ console.warn('Error sanitizing project card', e); }
+  });
+
 });
 
 // Botón de WhatsApp con movimiento suave
@@ -185,3 +279,38 @@ window.addEventListener("click", (e) => {
     e.target.style.display = "none";
   }
 });
+
+// Safety diagnostic: detect fullscreen elements that may be intercepting clicks
+(function safetyFix(){
+  setTimeout(()=>{
+    try{
+      const winW = window.innerWidth;
+      const winH = window.innerHeight;
+      document.querySelectorAll('body *').forEach(el=>{
+        try{
+          const cs = getComputedStyle(el);
+          if((cs.position === 'fixed' || cs.position === 'absolute')){
+            const rect = el.getBoundingClientRect();
+            if(rect.top <= 0 && rect.left <= 0 && rect.width >= winW && rect.height >= winH){
+              // ignore the WhatsApp FAB and known overlays that should intercept
+              const id = el.id || '';
+              if(id === 'whatsapp-btn') return;
+              // If element is a modal overlay but hidden, ensure it doesn't intercept
+              if(el.classList.contains('overlay')){
+                if(el.classList.contains('hidden')){
+                  el.style.pointerEvents = 'none';
+                }
+              } else {
+                // For unexpected full-screen elements, disable pointer-events so clicks pass through
+                console.warn('Safety: disabling pointer-events on full-screen element to restore interactivity', el);
+                el.style.pointerEvents = 'none';
+              }
+            }
+          }
+        }catch(e){}
+      });
+      // Ensure interactive controls are clickable
+      document.querySelectorAll('button, a, input, textarea').forEach(el=>{ el.style.pointerEvents = 'auto'; });
+    }catch(e){ console.warn('SafetyFix error', e); }
+  }, 200);
+})();
