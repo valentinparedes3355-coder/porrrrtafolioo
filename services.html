@@ -14,7 +14,7 @@
         <a href="portfolio.html">Proyectos</a>
         <a href="services.html">Servicios</a>
         <a href="about.html">Nosotras</a>
-        <a href="contact.html" class="cta">Contactar</a>
+        <a href="contact.html" class="cta" style="color:#000">Contactar</a>
       </nav>
     </div>
   </header>
@@ -28,11 +28,13 @@
         <div class="servicio-card flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="servicio-icon">
-                <img src="https://cdn-icons-png.flaticon.com/512/4436/4436481.png" alt="Tienda Online">
-              </div>
-              <h3>Tienda Online</h3>
-            </div>
+                  <video class="card-video" src="assets/images/tiendaonline.mp4" autoplay loop muted playsinline></video>
+                  <div class="video-overlay" aria-hidden="true"></div>
+                  <div class="servicio-icon" aria-hidden="true">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4436/4436481.png" alt="">
+                  </div>
+                  <h3>Tienda Online</h3>
+                </div>
             <div class="flip-card-back">
               <h3>Tienda Online</h3>
               <p><strong>Para ti:</strong> Vende tus productos 24/7 sin depender de redes sociales.</p>
@@ -50,8 +52,10 @@
         <div class="servicio-card flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="servicio-icon">
-                <img src="https://cdn-icons-png.flaticon.com/512/3209/3209306.png" alt="Sistema de Reservas">
+              <video class="card-video" src="assets/images/recepcion.mp4" autoplay loop muted playsinline></video>
+              <div class="video-overlay" aria-hidden="true"></div>
+              <div class="servicio-icon" aria-hidden="true">
+                <img src="https://cdn-icons-png.flaticon.com/512/3209/3209306.png" alt="">
               </div>
               <h3>Sistema de Reservas</h3>
             </div>
@@ -72,8 +76,10 @@
         <div class="servicio-card flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="servicio-icon">
-                <img src="https://cdn-icons-png.flaticon.com/512/2913/2913091.png" alt="Control de Stock">
+              <video class="card-video" src="assets/images/control.mp4" autoplay loop muted playsinline></video>
+              <div class="video-overlay" aria-hidden="true"></div>
+              <div class="servicio-icon" aria-hidden="true">
+                <img src="https://cdn-icons-png.flaticon.com/512/2913/2913091.png" alt="">
               </div>
               <h3>Control de Stock</h3>
             </div>
@@ -94,8 +100,10 @@
         <div class="servicio-card flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <div class="servicio-icon">
-                <img src="https://cdn-icons-png.flaticon.com/512/8099/8099374.png" alt="Asesoramiento Digital">
+              <video class="card-video" src="assets/images/asesoramiento.mp4" autoplay loop muted playsinline></video>
+              <div class="video-overlay" aria-hidden="true"></div>
+              <div class="servicio-icon" aria-hidden="true">
+                <img src="https://cdn-icons-png.flaticon.com/512/8099/8099374.png" alt="">
               </div>
               <h3>Asesoramiento Digital</h3>
             </div>
@@ -120,8 +128,9 @@
       .flip-card {
         background-color: transparent;
         width: 100%;
-        height: 300px;
+        height: 300px; /* fixed height to avoid jump on flip */
         perspective: 1000px;
+        box-sizing: border-box;
       }
 
       .flip-card-inner {
@@ -131,6 +140,8 @@
         text-align: center;
         transition: transform 1.2s;
         transform-style: preserve-3d;
+        transform-origin: center center; /* keep rotation centered */
+        will-change: transform;
       }
 
       .flip-card:hover .flip-card-inner {
@@ -139,6 +150,8 @@
 
       .flip-card-front, .flip-card-back {
         position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         backface-visibility: hidden;
@@ -148,11 +161,36 @@
         align-items: center;
         padding: 1.5rem;
         border-radius: 10px;
+        box-sizing: border-box; /* ensure padding doesn't change size */
       }
 
       .flip-card-front {
-        background: linear-gradient(135deg, #4a4a4a 0%, #3d3d3d 100%);
+        position: relative;
+        overflow: hidden;
+        background: transparent; /* video will show instead of gray */
         color: white;
+      }
+
+      .flip-card-front video.card-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .flip-card-front .video-overlay {
+        position: absolute;
+        inset: 0;
+        /* slightly darker overlay so video is a bit darker but content stays legible */
+        background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.22));
+        z-index: 1;
+      }
+
+      .flip-card-front > * {
+        position: relative;
+        z-index: 2;
       }
 
       .flip-card-back {
@@ -163,11 +201,22 @@
 
       .flip-card-front .servicio-icon {
         margin-bottom: 1rem;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 72px;
+        height: 72px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        backdrop-filter: blur(4px);
       }
 
       .flip-card-front .servicio-icon img {
-        width: 60px;
-        height: 60px;
+        width: 44px;
+        height: 44px;
+        display: block;
       }
 
       .flip-card-front h3 {
@@ -243,7 +292,7 @@
               <li>Capacitación 1 hora para autogestión</li>
               <li>1 mes de soporte básico</li>
             </ul>
-            <a class="btn primary" href="services.html?package=Basico#quoteForm" data-package="Basico">Contratar Básico</a>
+            <a class="btn primary" href="contact.html?package=Basico#contactForm" data-package="Basico">Contratar Básico</a>
           </article>
 
           <article class="card price-card">
@@ -255,7 +304,7 @@
               <li>Prototipo y 2 rondas de cambios</li>
               <li>Capacitación 2 horas + 2 meses de soporte</li>
             </ul>
-            <a class="btn primary" href="services.html?package=Crecimiento#quoteForm" data-package="Crecimiento">Contratar Crecimiento</a>
+            <a class="btn primary" href="contact.html?package=Crecimiento#contactForm" data-package="Crecimiento">Contratar Crecimiento</a>
           </article>
 
           <article class="card price-card">
@@ -267,7 +316,7 @@
               <li>Backups y seguridad básica</li>
               <li>Descuentos en desarrollos adicionales</li>
             </ul>
-            <a class="btn primary" href="services.html?package=Soporte#quoteForm" data-package="Soporte">Contratar Soporte</a>
+            <a class="btn primary" href="contact.html?package=Soporte#contactForm" data-package="Soporte">Contratar Soporte</a>
           </article>
         </div>
       </div>
@@ -325,34 +374,7 @@
 
     <!-- Sección 'Clientes' removida según solicitud -->
 
-    <section class="quote" id="quoteForm">
-      <div class="container">
-        <h2>Solicitá una cotización</h2>
-        <p class="lead">Contanos brevemente tu proyecto y te enviamos una propuesta.</p>
-        <form id="contactForm" class="form-card" action="#" method="post">
-          <input type="hidden" name="package" id="packageInput" value="">
-          <label>Nombre
-            <input type="text" name="name" required>
-          </label>
-          <label>Email
-            <input type="email" name="email" required>
-          </label>
-          <label>Servicio de interés
-            <select name="service">
-              <option>Básico</option>
-              <option>Crecimiento</option>
-              <option>Soporte</option>
-              <option>Otro / Personalizado</option>
-            </select>
-          </label>
-          <label>Descripción
-            <textarea name="message" rows="4"></textarea>
-          </label>
-          <button type="submit" class="btn primary">Solicitar cotización</button>
-          <div id="formSuccess" class="muted hidden">Gracias — te contactamos pronto.</div>
-        </form>
-      </div>
-    </section>
+    <!-- Formulario de cotización eliminado de la página de servicios -->
   </main>
   
   <div id="previewOverlay" class="overlay hidden" aria-hidden="true">
@@ -405,8 +427,8 @@
       
     </div>
   </footer>
-  <a href="https://wa.me/5491123105957" target="_blank" id="whatsapp-btn" aria-label="WhatsApp">
-  <img src="assets/images/whatsapp-icon.png" alt="WhatsApp" />
+  <a href="https://wa.me/5491123105957" target="_blank" id="whatsapp-btn" aria-label="WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:999;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;box-shadow:0 6px 22px rgba(0,0,0,0.28);background:transparent;text-decoration:none;">
+    <img src="assets/images/whatsapp-icon.png" alt="WhatsApp" style="width:36px;height:36px;display:block;">
   </a>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
